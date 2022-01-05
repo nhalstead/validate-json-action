@@ -9,6 +9,7 @@ import invalidData from './mocks/tested-data/invalid_by_schema.json';
 
 jest.mock('better-ajv-errors');
 import betterAjvErrors from 'better-ajv-errors';
+import { ValidateFunction } from 'ajv';
 
 describe('Prepare and validate JSON schema', () => {
     beforeEach(() => {
@@ -40,7 +41,7 @@ describe('Validate JSON matches schema', () => {
     test('should return true when validating JSON data that matches the schema', async () => {
         const mockedValidator = jest.fn().mockReturnValue(true);
 
-        const result = await schemaValidator.validate(validData, mockedValidator);
+        const result = await schemaValidator.validate(validData, mockedValidator as unknown as ValidateFunction<unknown>);
         expect(result).toBe(true);
         expect(mockedValidator).toHaveBeenCalled();
         expect(betterAjvErrors).not.toHaveBeenCalled();
@@ -50,7 +51,7 @@ describe('Validate JSON matches schema', () => {
         const mockedValidator = jest.fn().mockReturnValue(false);
         (betterAjvErrors as jest.Mock<any>).mockImplementation(() => 'Some errors');
 
-        const task = schemaValidator.validate(invalidData, mockedValidator);
+        const task = schemaValidator.validate(invalidData, mockedValidator as unknown as ValidateFunction<unknown>);
 
         try {
             expect(await task).toThrowError(InvalidJsonError);

@@ -7,6 +7,6 @@ export const getJson = async (filePath: string): Promise<object> => {
         const json = JSON.parse(fileContents);
         return json;
     } catch (ex) {
-        throw new InvalidJsonFileError(filePath, ex);
+        throw new InvalidJsonFileError(filePath, ex as Error);
     }
 };

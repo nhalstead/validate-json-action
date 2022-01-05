@@ -55,8 +55,8 @@ describe('Github action results', () => {
         } catch (ex) {
             // Assert
             expect(ex).not.toBeUndefined();
-            expect(ex.output).not.toBeUndefined();
-            expect(ex.output.toString()).toContain(`Missing GITHUB_WORKSPACE environment variable`);
+            expect((ex as any).output).not.toBeUndefined();
+            expect((ex as any).output.toString()).toContain(`Missing GITHUB_WORKSPACE environment variable`);
         }
     });
 
@@ -76,8 +76,8 @@ describe('Github action results', () => {
         } catch (ex) {
             // Assert
             expect(ex).not.toBeUndefined();
-            expect(ex.output).not.toBeUndefined();
-            expect(ex.output.toString()).toContain(`Missing SCHEMA input`);
+            expect((ex as any).output).not.toBeUndefined();
+            expect((ex as any).output.toString()).toContain(`Missing SCHEMA input`);
         }
     });
 
@@ -97,8 +97,8 @@ describe('Github action results', () => {
         } catch (ex) {
             // Assert
             expect(ex).not.toBeUndefined();
-            expect(ex.output).not.toBeUndefined();
-            expect(ex.output.toString()).toContain(`Missing JSONS input`);
+            expect((ex as any).output).not.toBeUndefined();
+            expect((ex as any).output.toString()).toContain(`Missing JSONS input`);
         }
     });
 
@@ -121,10 +121,10 @@ describe('Github action results', () => {
         } catch (ex) {
             // Assert
             expect(ex).not.toBeUndefined();
-            expect(ex.output).not.toBeUndefined();
-            expect(ex.output.toString()).toContain(`Missing GITHUB_WORKSPACE environment variable`);
-            expect(ex.output.toString()).not.toContain(`Missing SCHEMA input`);
-            expect(ex.output.toString()).not.toContain(`Missing JSONS input`);
+            expect((ex as any).output).not.toBeUndefined();
+            expect((ex as any).output.toString()).toContain(`Missing GITHUB_WORKSPACE environment variable`);
+            expect((ex as any).output.toString()).not.toContain(`Missing SCHEMA input`);
+            expect((ex as any).output.toString()).not.toContain(`Missing JSONS input`);
         }
     });
 
@@ -145,9 +145,9 @@ describe('Github action results', () => {
         } catch (ex) {
             // Assert
             expect(ex).not.toBeUndefined();
-            expect(ex.output).not.toBeUndefined();
-            expect(ex.output.toString()).toContain(`Missing SCHEMA input`);
-            expect(ex.output.toString()).not.toContain(`Missing JSONS input`);
+            expect((ex as any).output).not.toBeUndefined();
+            expect((ex as any).output.toString()).toContain(`Missing SCHEMA input`);
+            expect((ex as any).output.toString()).not.toContain(`Missing JSONS input`);
         }
     });
 
@@ -168,9 +168,9 @@ describe('Github action results', () => {
         } catch (ex) {
             // Assert
             expect(ex).not.toBeUndefined();
-            expect(ex.output).not.toBeUndefined();
-            expect(ex.output.toString()).not.toContain(`Missing SCHEMA input`);
-            expect(ex.output.toString()).toContain(`Missing JSONS input`);
+            expect((ex as any).output).not.toBeUndefined();
+            expect((ex as any).output.toString()).not.toContain(`Missing SCHEMA input`);
+            expect((ex as any).output.toString()).toContain(`Missing JSONS input`);
         }
     });
 
@@ -191,9 +191,9 @@ describe('Github action results', () => {
         } catch (ex) {
             // Assert
             expect(ex).not.toBeUndefined();
-            expect(ex.output).not.toBeUndefined();
-            expect(ex.output.toString()).toContain(`Missing SCHEMA input`);
-            expect(ex.output.toString()).toContain(`Missing JSONS input`);
+            expect((ex as any).output).not.toBeUndefined();
+            expect((ex as any).output.toString()).toContain(`Missing SCHEMA input`);
+            expect((ex as any).output.toString()).toContain(`Missing JSONS input`);
         }
     });
 });

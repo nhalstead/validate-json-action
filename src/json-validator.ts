@@ -27,13 +27,13 @@ export const validateJsons = async (
                     prettyLog(filePath);
                     return { filePath, valid: result };
                 } catch (e) {
-                    prettyLog(filePath, e);
+                    prettyLog(filePath, e as Error);
                     return { filePath, valid: false };
                 }
             })
         );
     } catch (err) {
-        prettyLog(schemaPath, err);
+        prettyLog(schemaPath, err as Error);
         return [{ filePath: schemaPath, valid: false }];
     }
 };

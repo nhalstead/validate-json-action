@@ -1,15 +1,16 @@
-import Ajv, { ValidateFunction } from 'ajv';
+import Ajv, { AnySchemaObject, ErrorObject, ValidateFunction } from 'ajv';
 import betterAjvErrors from 'better-ajv-errors';
+import { request } from 'http';
 import { InvalidSchemaError, InvalidJsonError } from './errors';
 
 class SchemaValidator {
-    private schemaValidator: Ajv.Ajv;
+    private schemaValidator: Ajv;
 
     constructor() {
-        this.schemaValidator = new Ajv({ allErrors: true, jsonPointers: true, loadSchema: this.loadSchema });
+        this.schemaValidator = new Ajv({ allErrors: true, loadSchema: this.loadSchema, strict: false, logger: false });
     }
 
-    public instance(): Ajv.Ajv {
+    public instance(): Ajv {
         return this.schemaValidator;
     }
 
@@ -28,15 +29,31 @@ class SchemaValidator {
 
         if (!valid) {
             const errors = this.schemaValidator.errorsText(validator.errors);
-            const output = betterAjvErrors(validator.schema, data, validator.errors, { format: 'cli', indent: 4 });
+            const output = betterAjvErrors(validator.schema, data, validator.errors as ErrorObject<string, Record<string, any>, unknown>[], { format: 'cli', indent: 4 });
             throw new InvalidJsonError(errors, (output || {}) as string);
         }
 
         return valid;
     }
 
-    private async loadSchema() {
-        return Promise.resolve(true);
+    private loadSchema(uri: string): Promise<AnySchemaObject> {
+        return new Promise((resolve, reject) => {
+            request(uri, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }, res => {
+                if (!res.statusCode || res.statusCode >= 400) reject(`Reached an out of bounds status code ${res.statusCode}`);
+                var str = '';
+                res.on('data', chunk => {
+                    str += chunk;
+                });
+                res.on('end', () => {
+                    resolve(JSON.parse(str));
+                })
+            })
+        })
     }
 }
 
