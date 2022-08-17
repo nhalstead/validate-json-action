@@ -20,7 +20,7 @@ async function run() {
                     return [...accum, current];
                 }
 
-                const globFormula = current.replace(/\\/, '/');
+                const globFormula = current.replace(/\\/g, '/');
                 const expandedGlob = glob.sync(globFormula, {});
                 return [...accum, ...expandedGlob];
             }, []);
