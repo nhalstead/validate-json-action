@@ -4,7 +4,7 @@
 
 # Validate JSON Github Action
 
-Easy to use GitHub Action to validates JSON files based on a JSON Schema.
+Easy to use GitHub Action to validate JSON files based on a JSON Schema.
 
 This project uses [`ajv`](https://github.com/epoberezkin/ajv), fast JSON schema validator, to perform the validation. 
 
@@ -12,10 +12,8 @@ This project uses [`ajv`](https://github.com/epoberezkin/ajv), fast JSON schema 
 
 ### Inputs
 
-- `schema`: Relative file path under the repository of a JSON schema file to validate the other JSON files with. Default is: `'./schema.json'`.
+- `schema`: Relative file path in the repository to a JSON schema file to validate the other JSON files with. If no value is provided `./schema.json` will be used.
 - `jsons`: One or more relative file paths under the repository (separated by commas) of the JSON files to validate with the schema provided. Glob paths can be used as well (wildcard matching).
-
-> Note: `schema` is **required**, otherwise default will be used.
 
 ### Outputs
 
