@@ -1,10 +1,10 @@
 name: 'Validate JSON with Glob'
 description: 'GitHub Action: Validate JSON'
-author: 'Or Rosenblatt'
+author: 'Noah Halstead'
 inputs:
   schema:
     description: 'Relative file path under the repository of a JSON schema file to validate the other JSON files with.'
-    required: true
+    required: false
     default: './schema.json'
   jsons:
     description: 'One or more relative file paths under the repository (separated by comma) of the JSON files to validate with the schema provided.'
