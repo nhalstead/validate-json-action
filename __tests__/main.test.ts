@@ -2,6 +2,7 @@ import * as os from 'os';
 import * as process from 'process';
 import * as path from 'path';
 import * as cp from 'child_process';
+import * as fs from 'fs';
 import { MockedConfig } from './mocks/mocked-config';
 
 let mockedConfig: MockedConfig;
@@ -21,20 +22,32 @@ describe('Github action results', () => {
 
     test('No errors when all inputs are set and valid', () => {
         // Arrange
+        const outputFile = path.join(os.tmpdir(), `github_output_${Date.now()}`);
+        fs.writeFileSync(outputFile, '');
         mockedConfig.mockValue('SCHEMA', './mocks/schema/valid.json');
         mockedConfig.mockValue('JSONS', './mocks/tested-data/valid.json');
 
         mockedConfig.set();
 
         const options = {
-            env: process.env,
+            env: {
+                ...process.env,
+                GITHUB_OUTPUT: outputFile,
+            },
         };
 
         // Act
-        const result = cp.execSync(`node ${ip}`, options);
+        try {
+            cp.execSync(`node ${ip}`, options);
+        } catch (e) {
+            console.error((e as any).output.toString());
+            throw e;
+        }
 
         // Assert
-        expect(result.toString()).toContain(`::set-output name=INVALID::`);
+        const output = fs.readFileSync(outputFile, 'utf8');
+        fs.unlinkSync(outputFile);
+        expect(output).toContain(`INVALID`);
     });
 
     test('Error is thrown when GITHUB_WORKSPACE environment variable is not set', () => {
