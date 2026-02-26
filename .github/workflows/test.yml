@@ -1,4 +1,4 @@
-name: "PR Checks"
+name: Unit Tests
 on: [pull_request, push]
 
 jobs:
