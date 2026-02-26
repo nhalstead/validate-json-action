@@ -96,3 +96,6 @@ typings/
 # IDE
 .vscode
 .idea/
+
+# Test reports
+test-reports/

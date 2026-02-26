@@ -31,9 +31,12 @@
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
+    "@types/junit-report-builder": "^3.0.2",
     "@types/node": "^18.19.130",
     "husky": "^3.0.9",
     "jest": "^30.2.0",
+    "jest-junit": "^16.0.0",
+    "junit-report-builder": "^5.1.1",
     "lint-staged": "^9.4.2",
     "prettier": "1.18.2",
     "ts-jest": "^29.4.6",

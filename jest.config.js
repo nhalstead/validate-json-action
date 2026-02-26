@@ -8,4 +8,14 @@ module.exports = {
     },
     verbose: true,
     setupFilesAfterEnv: ['./__tests__/setup.ts'],
+    reporters: [
+        'default',
+        [
+            'jest-junit',
+            {
+                outputDirectory: './test-reports',
+                outputName: 'junit.xml',
+            },
+        ],
+    ],
 };
