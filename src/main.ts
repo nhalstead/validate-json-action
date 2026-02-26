@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { getConfig, verifyConfigValues } from './configuration';
 import { validateJsons } from './json-validator';
-import * as glob from 'glob';
+import { globSync } from 'glob';
 
 async function run() {
     try {
@@ -21,7 +21,7 @@ async function run() {
                 }
 
                 const globFormula = current.replace(/\\/g, '/');
-                const expandedGlob = glob.sync(globFormula, {});
+                const expandedGlob = globSync(globFormula, {});
                 return [...accum, ...expandedGlob];
             }, []);
 

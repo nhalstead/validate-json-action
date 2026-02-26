@@ -3,8 +3,8 @@ import chalk from 'chalk';
 import { InvalidSchemaError, InvalidJsonError, InvalidJsonFileError } from './errors';
 
 export const prettyLog = (filePath: string, error?: Error): void => {
-    const prettyFilePath = chalk`{grey {bold {underline ${filePath}}}}`;
-    const prettyMessagePrefix = error ? chalk`{red {bold ✗}} ` : chalk`{green {bold ✓}} `;
+    const prettyFilePath = chalk.gray.bold.underline(filePath);
+    const prettyMessagePrefix = error ? chalk.red.bold('✗ ') : chalk.green.bold('✓ ');
     
     let message = '';
     let plainMessage = '';

@@ -1,4 +1,5 @@
-import Ajv, { ValidateFunction } from 'ajv';
+import { Ajv } from 'ajv';
+import type { ValidateFunction } from 'ajv';
 import betterAjvErrors from 'better-ajv-errors';
 import { InvalidSchemaError, InvalidJsonError } from './errors';
 
