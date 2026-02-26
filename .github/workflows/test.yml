@@ -19,6 +19,8 @@ jobs:
       if: success() || failure() # always run even if the previous step fails
       with:
         report_paths: 'test-reports/junit.xml'
+        include_passed: true
+        detailed_summary: true
 
     - name: "check for uncommitted changes"
       run: |
