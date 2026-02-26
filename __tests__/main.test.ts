@@ -52,7 +52,7 @@ describe('Github action results', () => {
         try {
             // Act
             cp.execSync(`node ${ip}`, options);
-        } catch (ex) {
+        } catch (ex: any) {
             // Assert
             expect(ex).not.toBeUndefined();
             expect(ex.output).not.toBeUndefined();
@@ -73,7 +73,7 @@ describe('Github action results', () => {
         try {
             // Act
             cp.execSync(`node ${ip}`, options);
-        } catch (ex) {
+        } catch (ex: any) {
             // Assert
             expect(ex).not.toBeUndefined();
             expect(ex.output).not.toBeUndefined();
@@ -94,7 +94,7 @@ describe('Github action results', () => {
         try {
             // Act
             cp.execSync(`node ${ip}`, options);
-        } catch (ex) {
+        } catch (ex: any) {
             // Assert
             expect(ex).not.toBeUndefined();
             expect(ex.output).not.toBeUndefined();
@@ -118,7 +118,7 @@ describe('Github action results', () => {
         try {
             // Act
             cp.execSync(`node ${ip}`, options);
-        } catch (ex) {
+        } catch (ex: any) {
             // Assert
             expect(ex).not.toBeUndefined();
             expect(ex.output).not.toBeUndefined();
@@ -142,7 +142,7 @@ describe('Github action results', () => {
         try {
             // Act
             cp.execSync(`node ${ip}`, options);
-        } catch (ex) {
+        } catch (ex: any) {
             // Assert
             expect(ex).not.toBeUndefined();
             expect(ex.output).not.toBeUndefined();
@@ -165,7 +165,7 @@ describe('Github action results', () => {
         try {
             // Act
             cp.execSync(`node ${ip}`, options);
-        } catch (ex) {
+        } catch (ex: any) {
             // Assert
             expect(ex).not.toBeUndefined();
             expect(ex.output).not.toBeUndefined();
@@ -188,7 +188,7 @@ describe('Github action results', () => {
         try {
             // Act
             cp.execSync(`node ${ip}`, options);
-        } catch (ex) {
+        } catch (ex: any) {
             // Assert
             expect(ex).not.toBeUndefined();
             expect(ex.output).not.toBeUndefined();

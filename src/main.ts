@@ -41,7 +41,7 @@ async function run() {
             core.info(`✅ All files were validated successfully.`);
         }
     } catch (error) {
-        core.setFailed(error.message);
+        core.setFailed((error as Error).message);
     }
 }
 

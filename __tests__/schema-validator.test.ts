@@ -38,7 +38,7 @@ describe('Validate JSON matches schema', () => {
     });
 
     test('should return true when validating JSON data that matches the schema', async () => {
-        const mockedValidator = jest.fn().mockReturnValue(true);
+        const mockedValidator = jest.fn().mockReturnValue(true) as any;
 
         const result = await schemaValidator.validate(validData, mockedValidator);
         expect(result).toBe(true);
@@ -47,7 +47,7 @@ describe('Validate JSON matches schema', () => {
     });
 
     test("should throw an error when validating JSON data that doesn't match the schema", async () => {
-        const mockedValidator = jest.fn().mockReturnValue(false);
+        const mockedValidator = jest.fn().mockReturnValue(false) as any;
         (betterAjvErrors as jest.Mock<any>).mockImplementation(() => 'Some errors');
 
         const task = schemaValidator.validate(invalidData, mockedValidator);
