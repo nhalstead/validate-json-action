@@ -10,6 +10,8 @@ This project uses [`ajv`](https://github.com/epoberezkin/ajv), fast JSON schema 
 
 ## Usage
 
+To use this GitHub Action, you can reference it in your workflow. For faster validation, this action uses a pre-built Docker image from the GitHub Container Registry (GHCR).
+
 ### Inputs
 
 - `schema`: Relative file path in the repository to a JSON schema file to validate the other JSON files with. If no value is provided `./schema.json` will be used.
@@ -34,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Validate JSON with Glob
-        uses: nhalstead/validate-json-action@0.1.8
+        uses: nhalstead/validate-json-action@v0.1.9
         with:
           schema: /path/to/schema.json
           jsons: /path/to/file.json,/path/to/another/file.json
