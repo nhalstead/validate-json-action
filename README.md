@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Validate JSON with Glob
-        uses: nhalstead/validate-json-action@v0.1.9
+        uses: nhalstead/validate-json-action@v0.1.10
         with:
           schema: /path/to/schema.json
           jsons: /path/to/file.json,/path/to/another/file.json

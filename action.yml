@@ -14,7 +14,7 @@ outputs:
     description: 'One or more of relative file paths of the invalid JSON files, found in the repository (separated by comma).'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/nhalstead/validate-json-action:v0.1.9'
+  image: 'docker://ghcr.io/nhalstead/validate-json-action:v0.1.10'
 branding: 
   icon: 'check'
   color: purple
