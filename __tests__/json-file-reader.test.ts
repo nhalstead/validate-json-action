@@ -22,8 +22,10 @@ describe('Process a JSON file', () => {
 
         const task = getJson(invalidJsonFile);
 
+        await expect(task).rejects.toThrow(InvalidJsonFileError);
+
         try {
-            expect(await task).toThrowError(InvalidJsonFileError);
+            await task;
         } catch (e) {
             const err = e as InvalidJsonFileError;
             expect(err.filePath).toEqual(invalidJsonFile);
@@ -34,13 +36,16 @@ describe('Process a JSON file', () => {
         const notExistingFile = `${mocks_dir}/no_such_file.json`;
 
         const task = getJson(notExistingFile);
+
+        await expect(task).rejects.toThrow(InvalidJsonFileError);
+
         try {
-            expect(await task).toThrowError(InvalidJsonFileError);
+            await task;
         } catch (e) {
             const err = e as InvalidJsonFileError;
             expect(err.filePath).toEqual(notExistingFile);
             expect(typeof err.innerError).not.toBeUndefined();
-            expect((<object>err.innerError)['code']).toBe('ENOENT');
+            expect((<any>err.innerError)['code']).toBe('ENOENT');
         }
     });
 });

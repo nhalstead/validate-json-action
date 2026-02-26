@@ -22,8 +22,7 @@
   "author": "nhalstead",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.0.0",
-    "@types/jest": "^24.0.22",
+    "@actions/core": "^1.10.1",
     "ajv": "^8.18.0",
     "better-ajv-errors": "^2.0.3",
     "chalk": "^2.4.2",
@@ -31,13 +30,13 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "@types/node": "^12.12.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^18.19.130",
     "husky": "^3.0.9",
-    "jest": "^24.9.0",
-    "jest-circus": "^24.7.1",
+    "jest": "^30.2.0",
     "lint-staged": "^9.4.2",
     "prettier": "1.18.2",
-    "ts-jest": "^24.0.2",
-    "typescript": "^4.9.5"
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3"
   }
 }

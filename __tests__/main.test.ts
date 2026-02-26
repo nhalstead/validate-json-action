@@ -26,7 +26,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
@@ -45,7 +45,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
@@ -66,7 +66,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
@@ -87,7 +87,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
@@ -111,7 +111,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
@@ -135,7 +135,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
@@ -158,7 +158,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
@@ -181,7 +181,7 @@ describe('Github action results', () => {
 
         mockedConfig.set();
 
-        const options: cp.ExecOptions = {
+        const options = {
             env: process.env,
         };
 
