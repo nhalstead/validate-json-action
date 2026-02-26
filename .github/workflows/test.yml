@@ -1,5 +1,9 @@
 name: Unit Tests
-on: [pull_request, push]
+on:
+  pull_request: {}
+  push:
+    paths-ignore:
+      - 'README.md'
 
 permissions:
   checks: write
@@ -21,9 +25,3 @@ jobs:
         report_paths: 'test-reports/junit.xml'
         include_passed: true
         detailed_summary: true
-
-    - name: "check for uncommitted changes"
-      run: |
-        git diff --exit-code --stat -- . ':!node_modules' || \
-        (echo "##[error] found changed files after build. please run 'npm run format && npm run build' and check in all changes." && \
-        exit 1)

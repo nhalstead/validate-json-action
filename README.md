@@ -42,4 +42,4 @@ jobs:
 
 ### Other People using this GitHub Action
 
-[GitHub Search](https://github.com/search?q=nhalstead%2Fvalidate-json-action+extension%3Ayml+extension%3Ayaml+path%3A.github%2Fworkflows+fork%3Atrue&type=Code&ref=advsearch&l=&l=)
+[GitHub Search](https://github.com/search?q=nhalstead%2Fvalidate-json-action+path%3A.github%2Fworkflows&type=code&ref=advsearch)
