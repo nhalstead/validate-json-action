@@ -1,16 +1,15 @@
-FROM node:12-alpine as base
+FROM node:20-alpine AS base
 WORKDIR /service
 
-FROM base as dependencies
+FROM base AS dependencies
 COPY package.json package-lock.json tsconfig.json ./
-RUN npm ci --production true
+RUN npm ci
 
-FROM dependencies as build
-RUN npm ci --production false
+FROM dependencies AS build
 COPY . ./
 RUN npm run build
 
-FROM base as release
+FROM base AS release
 COPY --from=build /service/node_modules /service/node_modules
 COPY --from=build /service/lib /service/lib
 COPY --from=build /service/package.json /service
