@@ -5,15 +5,15 @@ import { globSync } from 'glob';
 
 export async function run() {
     try {
-        const configuration = getConfig();
-        const configurationErrors = verifyConfigValues(configuration);
-        if (configurationErrors) {
-            configurationErrors.forEach(e => core.error(e));
+        const config = getConfig();
+        const configErrors = verifyConfigValues(config);
+        if (configErrors) {
+            configErrors.forEach(e => core.error(e));
             core.setFailed('Missing configuration');
             return;
         }
 
-        const jsonRelativePaths = configuration.JSONS.split(',')
+        const jsonRelativePaths = config.JSONS.split(',')
             // Expand all glob formulas
             .reduce((accum: string[], current) => {
                 if (current.indexOf('*') === -1) {
@@ -22,13 +22,13 @@ export async function run() {
 
                 // Replace backslashes with forward slashes for glob compatibility
                 const globFormula = current.replace(/\\/g, '/');
-                const expandedGlob = globSync(globFormula, {});
+                const expandedGlob = globSync(globFormula, { cwd: config.GITHUB_WORKSPACE });
                 return [...accum, ...expandedGlob];
             }, []);
 
         const validationResults = await validateJsons(
-            configuration.GITHUB_WORKSPACE,
-            configuration.SCHEMA,
+            config.GITHUB_WORKSPACE,
+            config.SCHEMA,
             jsonRelativePaths
         );
 

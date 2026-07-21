@@ -75,7 +75,7 @@ describe('main run', () => {
 
         await run();
 
-        expect(globSync).toHaveBeenCalledWith('data/*.json', {});
+        expect(globSync).toHaveBeenCalledWith('data/*.json', { cwd: '/work' });
         expect(validateJsons).toHaveBeenCalledWith('/work', 'schema.json', ['data/file1.json', 'data/file2.json']);
     });
 

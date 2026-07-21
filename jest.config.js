@@ -18,4 +18,7 @@ module.exports = {
             },
         ],
     ],
+    moduleNameMapper: {
+        '^@actions/core$': '<rootDir>/__tests__/mocks/core.js'
+    }
 };

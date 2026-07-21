@@ -12,8 +12,8 @@ RUN npm run build
 
 FROM base AS release
 COPY --from=build /service/node_modules /service/node_modules
-COPY --from=build /service/lib /service/lib
+COPY --from=build /service/dist /service/dist
 COPY --from=build /service/package.json /service
 ENV NODE_ENV=production
 
-ENTRYPOINT [ "node", "/service/lib/main.js" ]
+ENTRYPOINT [ "node", "/service/dist/main.js" ]

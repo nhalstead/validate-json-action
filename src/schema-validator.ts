@@ -40,9 +40,9 @@ class SchemaValidator {
         const valid = this.validatorFunc(data);
 
         if (!valid) {
-            const errors = this.validator.errorsText(this.validator.errors);
-            const output = betterAjvErrors(this.getSchema(), data, this.validator.errors || [], { format: 'cli', indent: 4 });
-            throw new InvalidJsonError(errors, (output || {}) as string);
+            const errors = this.validator.errorsText(this.validatorFunc.errors);
+            const output = betterAjvErrors(this.getSchema(), data, this.validatorFunc.errors || [], { format: 'cli', indent: 4 });
+            throw new InvalidJsonError(errors, (output || '') as string);
         }
 
         return valid;

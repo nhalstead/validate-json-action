@@ -1,4 +1,4 @@
-.PHONY: build test test-valid test-invalid test-glob
+.PHONY: build test test-units test-valid test-invalid test-glob
 
 IMAGE_NAME = local-action
 PWD = $(shell pwd)
@@ -8,7 +8,11 @@ build:
 	docker build -t $(IMAGE_NAME):latest .
 
 # Run all tests
-test: test-valid test-invalid test-glob
+test: test-units test-valid test-invalid test-glob
+
+# Test Coverage
+test-units:
+	npm run test
 
 # Test Valid JSON (Should pass)
 test-valid: build
