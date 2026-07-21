@@ -10,7 +10,7 @@ let ip: string;
 
 describe('Github action results', () => {
     beforeEach(() => {
-        ip = path.join(__dirname, '..', 'lib', 'main.js');
+        ip = path.join(__dirname, '..', 'dist', 'main.js');
         mockedConfig = new MockedConfig();
     });
 

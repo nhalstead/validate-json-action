@@ -50,7 +50,7 @@ export function getConfig(): Config {
 export function verifyConfigValues(config: Config): string[] | undefined {
     let errors: string[] = [];
     Object.keys(config).forEach(key => {
-        if (config[key] === '') {
+        if (config[key] === '' || config[key] === undefined || config[key] === null) {
             const mapping = configMapping.find(i => i.key === key);
             errors.push(
                 `🚨 Missing ${key} ${mapping!.setup === 'ENV' ? 'environment variable' : mapping!.setup.toLowerCase()}`
