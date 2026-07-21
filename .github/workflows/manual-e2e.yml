@@ -1,0 +1,62 @@
+name: Manual E2E Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_valid:
+        description: 'Run Valid JSON Test'
+        type: boolean
+        default: true
+      run_invalid:
+        description: 'Run Invalid JSON Test'
+        type: boolean
+        default: true
+
+jobs:
+  test-valid:
+    name: Valid JSON
+    if: inputs.run_valid
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build local Docker image
+        run: docker build -t validate-json-action-test .
+
+      - name: Run Action locally (Docker)
+        run: |
+          docker run --rm \
+            -e INPUT_SCHEMA="./__tests__/mocks/schema/valid.json" \
+            -e INPUT_JSONS="./__tests__/mocks/tested-data/valid.json" \
+            -e GITHUB_WORKSPACE="/github/workspace" \
+            -v ${{ github.workspace }}:/github/workspace \
+            validate-json-action-test
+
+  test-invalid:
+    name: Invalid JSON
+    if: inputs.run_invalid
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build local Docker image
+        run: docker build -t validate-json-action-test .
+
+      - name: Run Action locally (Docker)
+        id: run-action
+        continue-on-error: true
+        run: |
+          docker run --rm \
+            -e INPUT_SCHEMA="./__tests__/mocks/schema/valid.json" \
+            -e INPUT_JSONS="./__tests__/mocks/tested-data/invalid_by_schema.json" \
+            -e GITHUB_WORKSPACE="/github/workspace" \
+            -v ${{ github.workspace }}:/github/workspace \
+            validate-json-action-test
+
+      - name: Check outcome
+        if: steps.run-action.outcome != 'failure'
+        run: |
+          echo "Expected the action to fail with invalid JSON, but it succeeded."
+          exit 1
