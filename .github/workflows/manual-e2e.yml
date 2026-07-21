@@ -22,7 +22,8 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Patch action.yml to build from local Dockerfile
-        run: sed -i "s|image: 'docker://.*'|image: 'Dockerfile'|g" action.yml
+        run: |
+          sed -i "s|image: 'docker://.*'|image: 'Dockerfile'|g" action.yml
 
       - name: Run Action locally
         uses: ./
@@ -39,7 +40,8 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Patch action.yml to build from local Dockerfile
-        run: sed -i "s|image: 'docker://.*'|image: 'Dockerfile'|g" action.yml
+        run: |
+          sed -i "s|image: 'docker://.*'|image: 'Dockerfile'|g" action.yml
 
       - name: Run Action locally
         id: run-action
