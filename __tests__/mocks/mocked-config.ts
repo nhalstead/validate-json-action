@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { ConfigKeys, ConfigKey, configMapping } from '../../src/configuration';
+import { ConfigKeys, ConfigKey, configMapping } from '../../src/config';
 
 export class MockedConfig {
     private mockedConfig: {};
