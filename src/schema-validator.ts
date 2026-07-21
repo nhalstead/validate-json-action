@@ -1,35 +1,47 @@
 import { Ajv } from 'ajv';
-import type { ValidateFunction } from 'ajv';
+import addFormats from "ajv-formats"
+import type { AnySchema, ValidateFunction } from 'ajv';
 import betterAjvErrors from 'better-ajv-errors';
 import { InvalidSchemaError, InvalidJsonError } from './errors';
 
 class SchemaValidator {
-    private schemaValidator: Ajv;
+    private validator: Ajv;
+    private validatorFunc?: ValidateFunction;
 
     constructor() {
-        this.schemaValidator = new Ajv({ allErrors: true });
+        this.validator = new Ajv({ allErrors: true });
+        addFormats(this.validator);
     }
 
-    public instance(): Ajv {
-        return this.schemaValidator;
-    }
-
-    public async prepareSchema(schema: object): Promise<ValidateFunction> {
-        const isSchemaValid = this.schemaValidator.validateSchema(schema);
+    public prepareSchema(schema: object): void {
+        this.validatorFunc = undefined;
+        const isSchemaValid = this.validator.validateSchema(schema);
         if (!isSchemaValid) {
-            const errors = this.schemaValidator.errorsText(this.schemaValidator.errors);
+            const errors = this.validator.errorsText(this.validator.errors);
             throw new InvalidSchemaError(errors);
         }
 
-        return this.schemaValidator.compile(schema);
+        this.validatorFunc = this.validator.compile(schema);
     }
 
-    public async validate(data: object, validator: ValidateFunction): Promise<boolean> {
-        const valid = await validator(data);
+    public getSchema(): AnySchema {
+        if (!this.validatorFunc) {
+            throw new Error('Schema not prepared');
+        }
+
+        return this.validatorFunc.schema;
+    }
+
+    public validate(data: object): boolean {
+        if (!this.validatorFunc) {
+            throw new Error('Schema not prepared');
+        }
+
+        const valid = this.validatorFunc(data);
 
         if (!valid) {
-            const errors = this.schemaValidator.errorsText(validator.errors);
-            const output = betterAjvErrors(validator.schema, data, validator.errors || [], { format: 'cli', indent: 4 });
+            const errors = this.validator.errorsText(this.validator.errors);
+            const output = betterAjvErrors(this.getSchema(), data, this.validator.errors || [], { format: 'cli', indent: 4 });
             throw new InvalidJsonError(errors, (output || {}) as string);
         }
 

@@ -17,14 +17,13 @@ describe('Prepare and validate JSON schema', () => {
     });
 
     test('should return when schema is valid', async () => {
-        const result = await schemaValidator.prepareSchema(validSchema);
-        expect(result.errors).toBeNull();
-        expect(result.schema).toMatchObject(validSchema);
+        expect(() => schemaValidator.prepareSchema(validSchema)).not.toThrow();
+        expect(schemaValidator.getSchema()).toEqual(validSchema);
     });
 
     test('should throw an error when schema is invalid', async () => {
-        const task = schemaValidator.prepareSchema(invalidSchema);
-        await expect(task).rejects.toThrow(InvalidSchemaError);
+        expect(() => schemaValidator.prepareSchema(invalidSchema)).toThrow(InvalidSchemaError);
+        expect(() => schemaValidator.getSchema()).toThrow(Error);
     });
 });
 
@@ -35,29 +34,32 @@ describe('Validate JSON matches schema', () => {
     });
 
     test('should return true when validating JSON data that matches the schema', async () => {
-        const mockedValidator = jest.fn().mockReturnValue(true) as any;
-
-        const result = await schemaValidator.validate(validData, mockedValidator);
+        schemaValidator.prepareSchema(validSchema);
+        const result = schemaValidator.validate(validData);
         expect(result).toBe(true);
-        expect(mockedValidator).toHaveBeenCalled();
         expect(betterAjvErrors).not.toHaveBeenCalled();
     });
 
     test("should throw an error when validating JSON data that doesn't match the schema", async () => {
-        const mockedValidator = jest.fn().mockReturnValue(false) as any;
         (betterAjvErrors as jest.Mock<any>).mockImplementation(() => 'Some errors');
 
-        const task = schemaValidator.validate(invalidData, mockedValidator);
+        schemaValidator.prepareSchema(validSchema);
 
-        await expect(task).rejects.toThrow(InvalidJsonError);
+        expect(() => {
+            schemaValidator.validate(invalidData);
+        }).toThrow(InvalidJsonError);
 
         try {
-            await task;
+            schemaValidator.validate(invalidData);
         } catch (e) {
             const err = e as InvalidJsonError;
             expect(err.enrichedError).toEqual('Some errors');
-            expect(mockedValidator).toHaveBeenCalled();
             expect(betterAjvErrors).toHaveBeenCalled();
         }
+    });
+
+    test('should throw an error when validate is called before prepareSchema', () => {
+        const freshValidator = new (schemaValidator.constructor as any)();
+        expect(() => freshValidator.validate(validData)).toThrow('Schema not prepared');
     });
 });

@@ -1,13 +1,15 @@
 {
     "compilerOptions": {
         "target": "es2022",
-        "module": "commonjs",
-        "moduleResolution": "node",
+        "module": "node16",
+        "moduleResolution": "node16",
         "declaration": false,
         "strict": true,
         "noImplicitAny": false,
         "esModuleInterop": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "isolatedModules": true
     },
     "exclude": ["node_modules"]
 }
