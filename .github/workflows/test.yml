@@ -4,6 +4,8 @@ on:
   push:
     paths-ignore:
       - 'README.md'
+      - '.github/workflows/manual-e2e.yml'
+      - '.github/workflows/docker-publish.yml'
 
 permissions:
   checks: write
