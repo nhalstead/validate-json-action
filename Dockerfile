@@ -1,11 +1,12 @@
-FROM node:20-alpine AS base
+FROM node:26-alpine AS base
 WORKDIR /service
 
-FROM base AS dependencies
+FROM base AS npm-source
 COPY package.json package-lock.json tsconfig.json ./
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci
 
-FROM dependencies AS build
+FROM npm-source AS build
 COPY . ./
 RUN npm run build
 
