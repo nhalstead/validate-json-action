@@ -56,8 +56,7 @@ describe('main run', () => {
 
         await run();
 
-        expect(core.error).toHaveBeenCalledWith('Missing SCHEMA');
-        expect(core.setFailed).toHaveBeenCalledWith('Missing configuration');
+        expect(core.setFailed).toHaveBeenCalledWith('Missing SCHEMA');
     });
 
     it('should expand globs in JSONS input', async () => {

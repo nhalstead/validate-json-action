@@ -16,4 +16,4 @@ COPY --from=build /service/dist /service/dist
 COPY --from=build /service/package.json /service
 ENV NODE_ENV=production
 
-ENTRYPOINT [ "node", "/service/dist/main.js" ]
+ENTRYPOINT [ "node", "/service/dist/index.js" ]

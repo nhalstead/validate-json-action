@@ -1,15 +1,22 @@
 {
     "compilerOptions": {
         "target": "es2022",
-        "module": "node16",
-        "moduleResolution": "node16",
+        "module": "commonjs",
+        "moduleResolution": "node",
         "declaration": false,
         "strict": true,
         "noImplicitAny": false,
         "esModuleInterop": true,
+        "paths": {
+            "@actions/core": ["./node_modules/@actions/core/lib/core.js"]
+        },
         "resolveJsonModule": true,
         "skipLibCheck": true,
-        "isolatedModules": true
+        "isolatedModules": true,
+        "ignoreDeprecations": "6.0",
+        "lib": ["es2020", "dom"],
+        "types": ["node", "jest"]
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "lib", "dist", "coverage", "jest.config.js"],
+    "include": ["src/**/*.ts", "__tests__/**/*.ts"]
 }

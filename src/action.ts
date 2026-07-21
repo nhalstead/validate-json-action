@@ -8,8 +8,7 @@ export async function run() {
         const config = getConfig();
         const configErrors = verifyConfigValues(config);
         if (configErrors) {
-            configErrors.forEach(e => core.error(e));
-            core.setFailed('Missing configuration');
+            core.setFailed(configErrors.join('\n'));
             return;
         }
 

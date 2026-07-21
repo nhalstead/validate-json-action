@@ -19,6 +19,7 @@ module.exports = {
         ],
     ],
     moduleNameMapper: {
-        '^@actions/core$': '<rootDir>/__tests__/mocks/core.js'
+        '^@actions/core$': '<rootDir>/__tests__/mocks/core.js',
+        '^chalk$': '<rootDir>/__tests__/mocks/chalk.js'
     }
 };

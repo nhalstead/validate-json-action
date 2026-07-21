@@ -53,7 +53,7 @@ export function verifyConfigValues(config: Config): string[] | undefined {
         if (config[key] === '' || config[key] === undefined || config[key] === null) {
             const mapping = configMapping.find(i => i.key === key);
             errors.push(
-                `🚨 Missing ${key} ${mapping!.setup === 'ENV' ? 'environment variable' : mapping!.setup.toLowerCase()}`
+                `Missing ${key} ${mapping!.setup === 'ENV' ? 'environment variable' : mapping!.setup.toLowerCase()}`
             );
         }
     });
