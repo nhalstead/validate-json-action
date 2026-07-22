@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   release-please:
@@ -17,3 +18,11 @@ jobs:
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+      - name: Trigger Docker Publish Workflow
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Triggering docker-publish.yml for tag ${{ steps.release.outputs.tag_name }}"
+          gh workflow run docker-publish.yml --ref ${{ steps.release.outputs.tag_name }}
