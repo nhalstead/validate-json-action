@@ -6,6 +6,7 @@ on:
       - 'README.md'
       - '.github/workflows/manual-e2e.yml'
       - '.github/workflows/docker-publish.yml'
+      - '.github/workflows/release-please.yml'
 
 permissions:
   checks: write
