@@ -1,7 +1,11 @@
-.PHONY: build test test-units test-valid test-invalid test-glob
+.PHONY: build test test-units test-valid test-invalid test-glob pretty
 
 IMAGE_NAME = local-action
 PWD = $(shell pwd)
+
+# Format code
+pretty:
+	npm run format
 
 # Build the local Docker image
 build:

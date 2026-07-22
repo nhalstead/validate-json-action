@@ -18,12 +18,12 @@ describe('main run', () => {
         (getConfig as jest.Mock).mockReturnValue({
             GITHUB_WORKSPACE: '/work',
             SCHEMA: 'schema.json',
-            JSONS: 'file1.json,file2.json'
+            JSONS: 'file1.json,file2.json',
         });
         (verifyConfigValues as jest.Mock).mockReturnValue(undefined);
         (validateJsons as jest.Mock).mockResolvedValue([
             { filePath: 'file1.json', valid: true },
-            { filePath: 'file2.json', valid: true }
+            { filePath: 'file2.json', valid: true },
         ]);
 
         await run();
@@ -37,12 +37,10 @@ describe('main run', () => {
         (getConfig as jest.Mock).mockReturnValue({
             GITHUB_WORKSPACE: '/work',
             SCHEMA: 'schema.json',
-            JSONS: 'file1.json'
+            JSONS: 'file1.json',
         });
         (verifyConfigValues as jest.Mock).mockReturnValue(undefined);
-        (validateJsons as jest.Mock).mockResolvedValue([
-            { filePath: 'file1.json', valid: false }
-        ]);
+        (validateJsons as jest.Mock).mockResolvedValue([{ filePath: 'file1.json', valid: false }]);
 
         await run();
 
@@ -63,13 +61,13 @@ describe('main run', () => {
         (getConfig as jest.Mock).mockReturnValue({
             GITHUB_WORKSPACE: '/work',
             SCHEMA: 'schema.json',
-            JSONS: 'data/*.json'
+            JSONS: 'data/*.json',
         });
         (verifyConfigValues as jest.Mock).mockReturnValue(undefined);
         (globSync as jest.Mock).mockReturnValue(['data/file1.json', 'data/file2.json']);
         (validateJsons as jest.Mock).mockResolvedValue([
             { filePath: 'data/file1.json', valid: true },
-            { filePath: 'data/file2.json', valid: true }
+            { filePath: 'data/file2.json', valid: true },
         ]);
 
         await run();

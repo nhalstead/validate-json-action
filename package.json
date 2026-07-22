@@ -38,7 +38,7 @@
     "jest": "^30.2.0",
     "jest-junit": "^17.0.0",
     "junit-report-builder": "^5.1.1",
-    "prettier": "1.18.2",
+    "prettier": "^3.9.6",
     "ts-jest": "^29.0.0",
     "typescript": "^6.0.0"
   }

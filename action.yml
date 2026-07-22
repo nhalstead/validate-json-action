@@ -2,19 +2,19 @@ name: 'Validate JSON with Glob'
 description: 'GitHub Action: Validate JSON'
 author: 'Noah Halstead'
 inputs:
-    schema:
-        description: 'Relative file path under the repository of a JSON schema file to validate the other JSON files with.'
-        required: false
-        default: './schema.json'
-    jsons:
-        description: 'One or more relative file paths under the repository (separated by comma) of the JSON files to validate with the schema provided.'
-        required: true
+  schema:
+    description: 'Relative file path under the repository of a JSON schema file to validate the other JSON files with.'
+    required: false
+    default: './schema.json'
+  jsons:
+    description: 'One or more relative file paths under the repository (separated by comma) of the JSON files to validate with the schema provided.'
+    required: true
 outputs:
-    invalid:
-        description: 'One or more of relative file paths of the invalid JSON files, found in the repository (separated by comma).'
+  invalid:
+    description: 'One or more of relative file paths of the invalid JSON files, found in the repository (separated by comma).'
 runs:
-    using: 'docker'
-    image: 'docker://ghcr.io/nhalstead/validate-json-action:v0.1.10'
+  using: 'docker'
+  image: 'docker://ghcr.io/nhalstead/validate-json-action:v0.1.10'
 branding:
-    icon: 'check'
-    color: purple
+  icon: 'check'
+  color: purple

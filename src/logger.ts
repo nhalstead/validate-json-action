@@ -5,7 +5,7 @@ import { InvalidSchemaError, InvalidJsonError, InvalidJsonFileError } from './er
 export const prettyLog = (filePath: string, error?: Error): void => {
     const prettyFilePath = chalk.gray.bold.underline(filePath);
     const prettyMessagePrefix = error ? chalk.red.bold('✗ ') : chalk.green.bold('✓ ');
-    
+
     let message = '';
     let plainMessage = '';
 

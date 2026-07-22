@@ -26,11 +26,7 @@ export class MockedConfig {
     }
 
     public resetAll(): void {
-        const keysToRemove = [
-            'GITHUB_WORKSPACE',
-            'INPUT_SCHEMA',
-            'INPUT_JSONS'
-        ];
+        const keysToRemove = ['GITHUB_WORKSPACE', 'INPUT_SCHEMA', 'INPUT_JSONS'];
         for (const key of keysToRemove) {
             Reflect.deleteProperty(process.env, key);
         }

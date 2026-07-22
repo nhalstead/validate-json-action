@@ -1,5 +1,5 @@
 import { Ajv } from 'ajv';
-import addFormats from "ajv-formats"
+import addFormats from 'ajv-formats';
 import type { AnySchema, ValidateFunction } from 'ajv';
 import betterAjvErrors from 'better-ajv-errors';
 import { InvalidSchemaError, InvalidJsonError } from './errors';
@@ -41,7 +41,10 @@ class SchemaValidator {
 
         if (!valid) {
             const errors = this.validator.errorsText(this.validatorFunc.errors);
-            const output = betterAjvErrors(this.getSchema(), data, this.validatorFunc.errors || [], { format: 'cli', indent: 4 });
+            const output = betterAjvErrors(this.getSchema(), data, this.validatorFunc.errors || [], {
+                format: 'cli',
+                indent: 4,
+            });
             throw new InvalidJsonError(errors, (output || '') as string);
         }
 

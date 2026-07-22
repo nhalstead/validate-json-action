@@ -37,7 +37,7 @@ describe('Configuration', () => {
             const config = {
                 GITHUB_WORKSPACE: '/work',
                 SCHEMA: 'schema.json',
-                JSONS: 'data.json'
+                JSONS: 'data.json',
             };
 
             const errors = verifyConfigValues(config);
@@ -48,7 +48,7 @@ describe('Configuration', () => {
             const config = {
                 GITHUB_WORKSPACE: '',
                 SCHEMA: '',
-                JSONS: ''
+                JSONS: '',
             };
 
             const errors = verifyConfigValues(config);

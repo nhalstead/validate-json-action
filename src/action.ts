@@ -25,15 +25,9 @@ export async function run() {
                 return [...accum, ...expandedGlob];
             }, []);
 
-        const validationResults = await validateJsons(
-            config.GITHUB_WORKSPACE,
-            config.SCHEMA,
-            jsonRelativePaths
-        );
+        const validationResults = await validateJsons(config.GITHUB_WORKSPACE, config.SCHEMA, jsonRelativePaths);
 
-        const invalidJsons = validationResults
-            .filter(res => !res.valid)
-            .map(res => res.filePath);
+        const invalidJsons = validationResults.filter(res => !res.valid).map(res => res.filePath);
 
         core.setOutput('INVALID', invalidJsons.length > 0 ? invalidJsons.join(',') : '');
 

@@ -33,7 +33,7 @@ describe('Github action results', () => {
 
         // Assert
         expect(core.setFailed).not.toHaveBeenCalled();
-        expect(core.info).toHaveBeenCalledWith("✅ All files were validated successfully.");
+        expect(core.info).toHaveBeenCalledWith('✅ All files were validated successfully.');
     });
 
     test('Error is thrown when GITHUB_WORKSPACE environment variable is not set', async () => {
@@ -47,7 +47,9 @@ describe('Github action results', () => {
         await run();
 
         // Assert
-        expect(core.setFailed).toHaveBeenCalledWith(expect.stringContaining('Missing GITHUB_WORKSPACE environment variable'));
+        expect(core.setFailed).toHaveBeenCalledWith(
+            expect.stringContaining('Missing GITHUB_WORKSPACE environment variable')
+        );
     });
 
     test('Error is thrown when SCHEMA input is not set', async () => {
@@ -86,7 +88,9 @@ describe('Github action results', () => {
         await run();
 
         // Assert
-        expect(core.setFailed).toHaveBeenCalledWith(`Missing GITHUB_WORKSPACE environment variable\nMissing SCHEMA input\nMissing JSONS input`);
+        expect(core.setFailed).toHaveBeenCalledWith(
+            `Missing GITHUB_WORKSPACE environment variable\nMissing SCHEMA input\nMissing JSONS input`
+        );
     });
 
     test('Error is thrown when SCHEMA input is empty', async () => {
@@ -125,6 +129,8 @@ describe('Github action results', () => {
         await run();
 
         // Assert
-        expect(core.setFailed).toHaveBeenCalledWith(expect.stringContaining(`Missing SCHEMA input\nMissing JSONS input`));
+        expect(core.setFailed).toHaveBeenCalledWith(
+            expect.stringContaining(`Missing SCHEMA input\nMissing JSONS input`)
+        );
     });
 });
