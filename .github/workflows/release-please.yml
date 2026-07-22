@@ -25,4 +25,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Triggering docker-publish.yml for tag ${{ steps.release.outputs.tag_name }}"
-          gh workflow run docker-publish.yml --ref ${{ steps.release.outputs.tag_name }}
+          gh workflow run docker-publish.yml --ref ${{ steps.release.outputs.tag_name }} --repo ${{ github.repository }}
