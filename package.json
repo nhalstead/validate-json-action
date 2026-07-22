@@ -1,6 +1,6 @@
 {
   "name": "validate-json-action",
-  "version": "0.0.2",
+  "version": "0.1.11",
   "private": true,
   "description": "A Github action for validating JSON",
   "main": "dist/index.js",
