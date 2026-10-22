@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    
+    commit-message:
+      prefix: "fix"               # Prefix used for production dependencies (e.g., fix(deps): ...)
+      prefix-development: "chore" # Prefix used for dev dependencies (e.g., chore(deps): ...)
+      include: "scope"            # Automatically appends "(deps)" as the scope
