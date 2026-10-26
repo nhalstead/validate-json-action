@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/junit-report-builder": "^3.0.2",
-    "@types/node": "^20.0.0",
+    "@types/node": "^26.6.5",
     "@vercel/ncc": "^0.38.1",
     "jest": "^30.5.2",
     "jest-junit": "^17.0.0",
